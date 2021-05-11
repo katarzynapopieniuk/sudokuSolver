@@ -50,4 +50,20 @@ public class SudokuGrid {
         else
             return true;
     }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for(int i=0; i<size*5; i++)
+            builder.append("_");
+        builder.append("\n");
+        for(int[] row : grid) {
+            for(int i=0; i<size; i++)
+                builder.append(" | " + row[i]);
+            builder.append(" |\n");
+            for(int i=0; i<size*5; i++)
+                builder.append("_");
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
 }
