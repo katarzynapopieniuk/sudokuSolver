@@ -1,27 +1,17 @@
-import java.util.ArrayList;
-
 public class SudokuGrid {
 
-    private int[][] grid;
-    private int size;
+    private final int[][] grid;
 
-    public SudokuGrid( int size) {
-        this.size = size;
-        this.grid = new int[size][size];
+    public SudokuGrid() {
+        this.grid = new int[Constants.GRID_SIZE][Constants.GRID_SIZE];
     }
 
     public SudokuGrid(int[][] grid) throws InvalidGridSizeException {
         this.grid = grid;
-        int firstRowLength = grid[0].length;
-        for(int[] row : grid) {
-            if(row.length != firstRowLength)
-                throw new InvalidGridSizeException("Grid isn't square");
-        }
+        if(!isSizeValid())
+            throw new InvalidGridSizeException("Grid has wrong size");
     }
 
-    public int getSize() {
-        return size;
-    }
 
     public int getValue(int row, int column) throws InvalidCoordinateException {
         if(!isPointValid(row,column))
@@ -31,37 +21,42 @@ public class SudokuGrid {
 
     public void setValue(int row, int column, int value) throws InvalidCoordinateException {
         if(!isValueValid(value))
-            throw new IllegalArgumentException("value out of range");
+            throw new IllegalArgumentException("value out of range, row: " + row + ", column: " + column + ", value: " + value);
         if(!isPointValid(row,column))
             throw new InvalidCoordinateException("Coordinates out of range");
         grid[row][column] = value;
     }
 
-    private boolean isPointValid(int row, int column) {
-        if( row < 0 || row >= size || column < 0 || column > size )
-            return false;
-        else
-            return true;
+    private boolean isSizeValid() {
+        for(int[] row : grid) {
+            if(row.length != grid.length)
+                return false;
+        }
+        return true;
     }
 
-    private boolean isValueValid(int value) {
-        if( value <= 0 || value > size)
-            return false;
-        else
-            return true;
+    public static boolean isPointValid(int row, int column) {
+        return row >= Constants.MIN_INDEX && row <= Constants.MAX_INDEX && column >= Constants.MIN_INDEX && column <= Constants.MAX_INDEX;
+    }
+
+    public static boolean isValueValid(int value) {
+        return value >= Constants.MIN_VALUE && value <= Constants.MAX_VALUE;
+    }
+
+    public void resetCell(int row, int column) {
+        if(isPointValid(row,column))
+            grid[row][column] = Constants.NO_VALUE;
     }
 
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for(int i=0; i<size*5; i++)
-            builder.append("_");
+        builder.append("_".repeat(Constants.GRID_SIZE * 5));
         builder.append("\n");
         for(int[] row : grid) {
-            for(int i=0; i<size; i++)
-                builder.append(" | " + row[i]);
+            for(int i = Constants.MIN_INDEX; i<=Constants.MAX_INDEX; i++)
+                builder.append(" | ").append(row[i]);
             builder.append(" |\n");
-            for(int i=0; i<size*5; i++)
-                builder.append("_");
+            builder.append("_".repeat(Constants.GRID_SIZE * 5));
             builder.append("\n");
         }
         return builder.toString();
