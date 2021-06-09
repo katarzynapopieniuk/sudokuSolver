@@ -4,29 +4,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SudokuSolverTest {
 
-    int[][] board1 = {
-            {8, 1, 2, 7, 5, 3, 6, 4, 9},
-            {9, 4, 3, 6, 8, 2, 1, 7, 5},
-            {6, 7, 5, 4, 9, 1, 2, 8, 3},
-            {1, 5, 4, 2, 3, 7, 8, 9, 6},
-            {3, 6, 9, 8, 4, 5, 7, 2, 1},
-            {2, 8, 7, 1, 6, 9, 5, 3, 4},
-            {5, 2, 1, 9, 7, 4, 3, 6, 8},
-            {4, 3, 8, 5, 2, 6, 9, 1, 7},
-            {7, 9, 6, 3, 1, 8, 4, 5, 2},
-    };
-
-    int[][] board1again = {
-            {8, 1, 2, 7, 5, 3, 6, 4, 9},
-            {9, 4, 3, 6, 8, 2, 1, 7, 5},
-            {6, 7, 5, 4, 9, 1, 2, 8, 3},
-            {1, 5, 4, 2, 3, 7, 8, 9, 6},
-            {3, 6, 9, 8, 4, 5, 7, 2, 1},
-            {2, 8, 7, 1, 6, 9, 5, 3, 4},
-            {5, 2, 1, 9, 7, 4, 3, 6, 8},
-            {4, 3, 8, 5, 2, 6, 9, 1, 7},
-            {7, 9, 6, 3, 1, 8, 4, 5, 2},
-    };
+    public int[][] board1;
+    public SudokuSolverTest() {
+        board1 = new int[][] {
+                {8, 1, 2, 7, 5, 3, 6, 4, 9},
+                {9, 4, 3, 6, 8, 2, 1, 7, 5},
+                {6, 7, 5, 4, 9, 1, 2, 8, 3},
+                {1, 5, 4, 2, 3, 7, 8, 9, 6},
+                {3, 6, 9, 8, 4, 5, 7, 2, 1},
+                {2, 8, 7, 1, 6, 9, 5, 3, 4},
+                {5, 2, 1, 9, 7, 4, 3, 6, 8},
+                {4, 3, 8, 5, 2, 6, 9, 1, 7},
+                {7, 9, 6, 3, 1, 8, 4, 5, 2},
+        };
+    }
 
     int[][] board2 = {
             {0, 1, 2, 7, 5, 3, 6, 4, 9},
@@ -40,30 +31,7 @@ class SudokuSolverTest {
             {7, 9, 6, 3, 1, 8, 4, 5, 2},
     };
 
-    int[][] board2again = {
-            {0, 1, 2, 7, 5, 3, 6, 4, 9},
-            {9, 4, 3, 0, 8, 2, 1, 7, 5},
-            {6, 7, 5, 4, 9, 1, 2, 8, 3},
-            {1, 5, 4, 2, 3, 7, 8, 9, 6},
-            {3, 6, 9, 8, 4, 5, 7, 2, 1},
-            {2, 0, 7, 1, 6, 9, 5, 3, 4},
-            {5, 2, 1, 9, 7, 4, 3, 6, 8},
-            {4, 3, 8, 5, 2, 6, 9, 0, 7},
-            {7, 9, 6, 3, 1, 8, 4, 5, 2},
-    };
-
     int[][] board3 = {
-            {0, 0, 0, 0, 5, 3, 6, 4, 9},
-            {9, 4, 3, 6, 8, 2, 1, 7, 5},
-            {6, 7, 5, 4, 9, 1, 2, 8, 3},
-            {1, 5, 4, 2, 3, 7, 8, 9, 6},
-            {3, 6, 9, 8, 4, 5, 7, 2, 1},
-            {2, 8, 7, 1, 6, 9, 5, 3, 4},
-            {5, 2, 1, 9, 7, 4, 3, 6, 8},
-            {4, 3, 8, 5, 2, 6, 9, 1, 7},
-            {7, 9, 6, 3, 1, 8, 4, 5, 2},
-    };
-    int[][] board3again = {
             {0, 0, 0, 0, 5, 3, 6, 4, 9},
             {9, 4, 3, 6, 8, 2, 1, 7, 5},
             {6, 7, 5, 4, 9, 1, 2, 8, 3},
@@ -87,25 +55,10 @@ class SudokuSolverTest {
             {0, 0, 0, 0, 0, 0, 0, 0, 0},
     };
 
-    int[][] board4again = {
-            {8, 1, 2, 0, 0, 0, 0, 0, 0},
-            {9, 4, 3, 0, 0, 0, 0, 0, 0},
-            {6, 7, 5, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0},
-    };
-
-
-
     @Test
     void whenPointIsFilledTrueShouldBeReturned() throws InvalidCoordinateException {
         SudokuGrid grid = new SudokuGrid();
-        SudokuGrid workSheet = new SudokuGrid();
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         grid.setValue(0,0,1);
         assertTrue(solver.isPointFilled());
     }
@@ -113,16 +66,14 @@ class SudokuSolverTest {
     @Test
     void whenPointIsNotFilledFalseShouldBeThrown() {
         SudokuGrid grid = new SudokuGrid();
-        SudokuGrid workSheet = new SudokuGrid();
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         assertFalse(solver.isPointFilled());
     }
 
     @Test
     void whenFindNextNotFilledPointMethodIsUsedItShouldFindNotFilledPoint() throws InvalidCoordinateException, ElementNotExistingException {
         SudokuGrid grid = new SudokuGrid();
-        SudokuGrid workSheet = new SudokuGrid();
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         grid.setValue(0,0,1);
         grid.setValue(0,1,2);
         solver.findNextEmptyCell();
@@ -133,8 +84,7 @@ class SudokuSolverTest {
     @Test
     void whenFindNextNotFilledPointMethodIsUsedBuThereIsNoNextEmptyPointExceptionShouldBeThrown() throws InvalidCoordinateException {
         SudokuGrid grid = new SudokuGrid();
-        SudokuGrid workSheet = new SudokuGrid();
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         grid.setValue(8,7,1);
         grid.setValue(8,8,2);
         solver.setCurrentColumn(7);
@@ -145,8 +95,7 @@ class SudokuSolverTest {
     @Test
     void whenFindPreviousNotFilledPointMethodIsUsedItShouldFindNotFilledPoint() throws InvalidCoordinateException, ElementNotExistingException {
         SudokuGrid grid = new SudokuGrid();
-        SudokuGrid workSheet = new SudokuGrid();
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         grid.setValue(5,5,1);
         grid.setValue(5,6,2);
         solver.setCurrentRow(5);
@@ -159,8 +108,7 @@ class SudokuSolverTest {
     @Test
     void whenFindPreviousNotFilledPointMethodIsUsedBuThereIsNoPreviousEmptyPointExceptionShouldBeThrown() throws InvalidCoordinateException {
         SudokuGrid grid = new SudokuGrid();
-        SudokuGrid workSheet = new SudokuGrid();
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         grid.setValue(0,0,1);
         grid.setValue(0,1,2);
         solver.setCurrentColumn(2);
@@ -199,7 +147,7 @@ class SudokuSolverTest {
     void whenDoesValueMatchMethodIsCalledWithMatchingParameterTrueShouldBeReturned() throws InvalidCoordinateException {
         SudokuGrid grid = new SudokuGrid();
         SudokuGrid workSheet = new SudokuGrid();
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         workSheet.setValue(0,0,1);
         workSheet.setValue(0,1,2);
         workSheet.setValue(1,3,6);
@@ -304,31 +252,25 @@ class SudokuSolverTest {
     @Test
     void whenSudokuIsSolvedTrueShouldBeRetuned() throws InvalidGridSizeException {
         SudokuGrid grid = new SudokuGrid(board1);
-        SudokuGrid workSheet = new SudokuGrid(board1again);
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         assertTrue(solver.trySolve());
     }
 
     @Test
     void whenSudokuPossibleToSolveIsGivenItShouldBeSolved() throws InvalidGridSizeException {
-
-
         SudokuGrid grid = new SudokuGrid(board2);
-        SudokuGrid workSheet = new SudokuGrid(board2again);
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         assertTrue(solver.trySolve());
 
         SudokuGrid grid1 = new SudokuGrid(board3);
-        SudokuGrid workSheet1 = new SudokuGrid(board3again);
-        SudokuSolver solver1 = new SudokuSolver(grid1, workSheet1);
+        SudokuSolver solver1 = new SudokuSolver(grid1);
         assertTrue(solver1.trySolve());
     }
 
     @Test
     void whenValueIsInCurrentSubsquareTrueShouldBeReturned() throws InvalidGridSizeException, InvalidCoordinateException {
         SudokuGrid grid = new SudokuGrid(board4);
-        SudokuGrid workSheet = new SudokuGrid(board4again);
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         for(int i=1; i<=9; i++)
             assertTrue(solver.isValueInCurrentSubsquare(i));
     }
@@ -336,8 +278,7 @@ class SudokuSolverTest {
     @Test
     void whenValueIsntInCurrentSubsquareFalseShouldBeReturned() throws InvalidCoordinateException, InvalidGridSizeException {
         SudokuGrid grid = new SudokuGrid(board4);
-        SudokuGrid workSheet = new SudokuGrid(board4again);
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         solver.setCurrentColumn(4);
         for(int i=1; i<=9; i++)
             assertFalse(solver.isValueInCurrentSubsquare(i));

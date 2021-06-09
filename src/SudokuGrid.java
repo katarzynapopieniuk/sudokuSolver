@@ -61,4 +61,19 @@ public class SudokuGrid {
         }
         return builder.toString();
     }
+
+    public SudokuGrid getCopy() {
+        SudokuGrid copy = new SudokuGrid();
+        try {
+            for (int row = Constants.MIN_INDEX; row <= Constants.MAX_INDEX; row++) {
+                for (int col = Constants.MIN_INDEX; col <= Constants.MAX_INDEX; col++) {
+                    if(getValue(row, col) != Constants.NO_VALUE)
+                        copy.setValue(row, col, this.getValue(row, col));
+                }
+            }
+        } catch (InvalidCoordinateException e) {
+            // never occures
+        }
+        return copy;
+    }
 }

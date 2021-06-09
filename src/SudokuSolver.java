@@ -4,10 +4,25 @@ public class SudokuSolver {
     public final SudokuGrid gridWorkSheet;
     private int currentRow;
     private int currentColumn;
+    private boolean isSolved;
+
+    public SudokuSolver(SudokuGrid grid) {
+        this.grid = grid;
+        this.gridWorkSheet = grid.getCopy();
+        isSolved = false;
+    }
 
     public SudokuSolver(SudokuGrid grid, SudokuGrid gridWorkSheet) {
         this.grid = grid;
         this.gridWorkSheet = gridWorkSheet;
+        isSolved = false;
+    }
+
+    public SudokuGrid getSolution() {
+        if(isSolved) {
+            return gridWorkSheet;
+        }
+        else return null;
     }
 
     public boolean trySolve() {
@@ -25,6 +40,7 @@ public class SudokuSolver {
                     return false;
             }
         }while (currentCellIsInAllowedRange());
+        isSolved = true;
         return true;
     }
 

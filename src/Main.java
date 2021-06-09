@@ -14,110 +14,22 @@ public class Main {
                 { 0, 9, 0, 0, 0, 0, 4, 0, 0 }
         };
 
-        int[][] boardagain = {
-                { 8, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 3, 6, 0, 0, 0, 0, 0 },
-                { 0, 7, 0, 0, 9, 0, 2, 0, 0 },
-                { 0, 5, 0, 0, 0, 7, 0, 0, 0 },
-                { 0, 0, 0, 0, 4, 5, 7, 0, 0 },
-                { 0, 0, 0, 1, 0, 0, 0, 3, 0 },
-                { 0, 0, 1, 0, 0, 0, 0, 6, 8 },
-                { 0, 0, 8, 5, 0, 0, 0, 1, 0 },
-                { 0, 9, 0, 0, 0, 0, 4, 0, 0 }
-        };
-
-        int[][] solved = {
-                {8, 1, 2, 7, 5, 3, 6, 4, 9},
-                {9, 4, 3, 6, 8, 2, 1, 7, 5},
-                {6, 7, 5, 4, 9, 1, 2, 8, 3},
-                {1, 5, 4, 2, 3, 7, 8, 9, 6},
-                {3, 6, 9, 8, 4, 5, 7, 2, 1},
-                {2, 8, 7, 1, 6, 9, 5, 3, 4},
-                {5, 2, 1, 9, 7, 4, 3, 6, 8},
-                {4, 3, 8, 5, 2, 6, 9, 1, 7},
-                {7, 9, 6, 3, 1, 8, 4, 5, 2},
-        };
-
-        int[][] just9 = {
-                {0, 0, 0, 0, 0, 0, 0, 0, 9},
-                {9, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 9, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 9, 0},
-                {0, 0, 9, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 9, 0, 0, 0},
-                {0, 0, 0, 9, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 9, 0, 0},
-                {0, 9, 0, 0, 0, 0, 0, 0, 0},
-        };
-
-        int[][] just9again = {
-                {0, 0, 0, 0, 0, 0, 0, 0, 9},
-                {9, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 9, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 9, 0},
-                {0, 0, 9, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 9, 0, 0, 0},
-                {0, 0, 0, 9, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 9, 0, 0},
-                {0, 9, 0, 0, 0, 0, 0, 0, 0},
-        };
-
-        int[][] easy = {
-                {0, 1, 2, 7, 5, 3, 6, 4, 9},
-                {9, 4, 3, 0, 8, 2, 1, 7, 5},
-                {6, 7, 5, 4, 9, 1, 2, 8, 3},
-                {1, 5, 4, 2, 3, 7, 8, 9, 6},
-                {3, 6, 9, 8, 4, 5, 7, 2, 1},
-                {2, 0, 7, 1, 6, 9, 5, 3, 4},
-                {5, 2, 1, 9, 7, 4, 3, 6, 8},
-                {4, 3, 8, 5, 2, 6, 9, 0, 7},
-                {7, 9, 6, 3, 1, 8, 4, 5, 2},
-        };
-
-        int[][] easyagain = {
-                {0, 1, 2, 7, 5, 3, 6, 4, 9},
-                {9, 4, 3, 0, 8, 2, 1, 7, 5},
-                {6, 7, 5, 4, 9, 1, 2, 8, 3},
-                {1, 5, 4, 2, 3, 7, 8, 9, 6},
-                {3, 6, 9, 8, 4, 5, 7, 2, 1},
-                {2, 0, 7, 1, 6, 9, 5, 3, 4},
-                {5, 2, 1, 9, 7, 4, 3, 6, 8},
-                {4, 3, 8, 5, 2, 6, 9, 0, 7},
-                {7, 9, 6, 3, 1, 8, 4, 5, 2},
-        };
-
-        SudokuGrid grid;
-        SudokuGrid workSheet;
-        /*
+        SudokuGrid grid = null;
         try {
             grid = new SudokuGrid(board);
-            workSheet = new SudokuGrid(boardagain);
         } catch (InvalidGridSizeException e) {
-            e.printStackTrace();
             return;
         }
-         */
-        grid = new SudokuGrid();
-        workSheet = new SudokuGrid();
-
-        /*
-        try {
-            grid.setValue(0,1,3);
-            grid.setValue(1,1,2);
-            grid.setValue(2,2,1);
-        } catch (InvalidCoordinateException e) {
-            e.printStackTrace();
-        }
-
-         */
         System.out.print(grid.toString());
 
-        SudokuSolver solver = new SudokuSolver(grid, workSheet);
+        SudokuSolver solver = new SudokuSolver(grid);
         System.out.print("\n\n");
-        System.out.print(solver.trySolve());
-        System.out.print("\n\n");
-        System.out.print(workSheet.toString());
-
-
+        if(solver.trySolve()) {
+            System.out.print("solved: ");
+            System.out.print("\n\n");
+            System.out.print(solver.getSolution().toString());
+        }
+        else
+            System.out.println("Cannot solve");
     }
 }
